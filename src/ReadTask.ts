@@ -19,12 +19,12 @@ export class ReadTask extends ExifToolTask<Tags> {
   static for(filename: string, optionalArgs: string[] = []): ReadTask {
     const sourceFile = _path.resolve(filename)
     const args = [
+      ...optionalArgs,
       "-json",
       "-coordFormat",
       "%.8f", // Just a float, please, not the default of "22 deg 20' 7.58\" N"
       "-charset",
       "filename=utf8",
-      ...optionalArgs,
       sourceFile
     ]
     return new ReadTask(sourceFile, args)
